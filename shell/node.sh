@@ -1,6 +1,6 @@
 #!/bin/bash
 # nodejs的安装
-# author ctocode-zwj
+# author ctocode-zwj <982215226@qq.com>
 
 # node官网 https://nodejs.org
 # node中文网 http://nodejs.cn
