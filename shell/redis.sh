@@ -21,22 +21,20 @@ cp /root/redis-4.0.0/redis.conf /alidata/server/redis-4.0.0
 # 将redis的启动脚本放到/etc/init.d(类似windows的注册表，在系统启动时候执行)，给与可执行权限chmod a+x redis，并修改EXEC路径为/alidata/server/redis/bin/redis-server，CLIEXEC路径为/alidata/server/redis/bin/redis-cli，CONF路径为"/alidata/server/redis/redis.conf"
 # 删除安装包
 rm -rf /root/redis-4.0.0
-# 进入/alidata/server/redis-4.0.0目录
-cd /alidata/server/redis-4.0.0
+# 建立软连接
+ln -s /alidata/server/redis-4.0.0 /alidata/server/redis
 # 启动Redis服务
-# /alidata/server/redis-4.0.0/bin/redis-server /alidata/server/redis-4.0.0/redis.conf
+# /alidata/server/redis/bin/redis-server /alidata/server/redis/redis.conf
 # 启动redis客户端
-# redis-cli
+# /alidata/server/redis/bin/redis-cli
 # 关闭redis客户端
-# redis-cli shutdown
+# /alidata/server/redis/bin/redis-cli shutdown
 # 备注需要修改redis.conf的几个配置节点
 # vim /alidata/server/redis-4.0.0/redis.conf
 # daemonize no 改为   yes   #以守护进程方式运行  
 echo "daemonize yes" >> /alidata/server/redis-4.0.0/redis.conf
 # 如要允许外网连接redis把bind 127.0.0.1 前面的#注释掉。然后把protectionmode 改为no，否则远程客户端链接不上。
 # 去掉requirepass foobared的#,把foobared换成你想设置的密码
-# 建立软连接
-ln -s /alidata/server/redis-4.0.0 /alidata/server/redis
 cat > /etc/init.d/redis<<"EOF"
 #!/bin/sh
 # chkconfig: 2345 56 26
