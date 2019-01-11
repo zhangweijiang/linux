@@ -17,13 +17,14 @@ cd redis-4.0.0/src
 make && make PREFIX=/alidata/server/redis-4.0.0 install
 # redis-benchmark(redis性能测试工具),redis-check-aot(检查aot日志的工具)，redis-check-rdb(检查rdb日志的工具)
 # 复制redis.conf到/alidata/server/redis-4.0.0目录下
-# 进入/alidata/server/redis-4.0.0目录
-cd /alidata/server/redis-4.0.0
+cp /root/redis-4.0.0/redis.conf /alidata/server/redis-4.0.0
 # 将redis的启动脚本放到/etc/init.d(类似windows的注册表，在系统启动时候执行)，给与可执行权限chmod a+x redis，并修改EXEC路径为/alidata/server/redis/bin/redis-server，CLIEXEC路径为/alidata/server/redis/bin/redis-cli，CONF路径为"/alidata/server/redis/redis.conf"
 # 删除安装包
 rm -rf /root/redis-4.0.0
+# 进入/alidata/server/redis-4.0.0目录
+cd /alidata/server/redis-4.0.0
 # 启动Redis服务
-# ./bin/redis-server ../redis.conf
+# /alidata/server/redis-4.0.0/bin/redis-server /alidata/server/redis-4.0.0/redis.conf
 # 启动redis客户端
 # redis-cli
 # 关闭redis客户端
@@ -54,19 +55,19 @@ cat > /etc/init.d/redis<<"EOF"
 # Simple Redis init.d script conceived to work on Linux systems
 # as it does use of the /proc filesystem.
 
-CONF="/www/server/redis/redis.conf"
+CONF="/alidata/server/redis/redis.conf"
 REDISPORT=$(cat $CONF |grep port|grep -v '#'|awk '{print $2}')
 REDISPASS=$(cat $CONF |grep requirepass|grep -v '#'|awk '{print $2}')
 if [ "$REDISPASS" != "" ];then
 	REDISPASS=" -a $REDISPASS"
 fi
 if [ -f /www/server/redis/start.pl ];then
-	STARPORT=$(cat /www/server/redis/start.pl)
+	STARPORT=$(cat /alidata/server/redis/start.pl)
 else
 	STARPORT=6379
 fi
-EXEC=/www/server/redis/src/redis-server
-CLIEXEC="/www/server/redis/src/redis-cli -p $STARPORT$REDISPASS"
+EXEC=/alidata/server/redis/bin/redis-server
+CLIEXEC="/alidata/server/redis/bin/redis-cli -p $STARPORT$REDISPASS"
 PIDFILE=/var/run/redis_6379.pid
 
 redis_start(){
@@ -75,8 +76,8 @@ redis_start(){
 			echo "$PIDFILE exists, process is already running or crashed"
 	else
 			echo "Starting Redis server..."
-			nohup $EXEC $CONF >> /www/server/redis/logs.pl 2>&1 &
-			echo ${REDISPORT} > /www/server/redis/start.pl
+			nohup $EXEC $CONF >> /alidata/server/redis/logs.pl 2>&1 &
+			echo ${REDISPORT} > /alidata/server/redis/start.pl
 	fi
 }
 redis_stop(){
@@ -114,6 +115,8 @@ case "$1" in
         ;;
 esac
 EOF
+# 设置redis可执行权限
+chmod a+x /etc/init.d/redis
 # 设置开机启动项
 chkconfig --add redis
 # 通过service命令启动redis
