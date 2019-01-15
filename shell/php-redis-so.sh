@@ -20,5 +20,5 @@ make && make install
 rm -rf /root/redis-4.0.0
 # 往php.ini添加redis扩展
 echo "extension=redis.so">>/alidata/server/php/etc/php.ini
-# 启动redis
+# 重新启动redis
 service php-fpm restart
