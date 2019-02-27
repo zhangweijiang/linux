@@ -1,7 +1,8 @@
 #!/bin/bash
-# mysql备份
+# mysql备份并上传到ftp服务器
 # ctocode-zwj <982215226@qq.com>
-# 2019-01-31 17:00 
+# 2019-02-27 21:00
+
  
 #DUMP=/usr/bin/mysqldump    #mysqldump备份程序执行路径  
  
@@ -19,11 +20,11 @@ DAYS=7         #DAYS=7代表删除7天前的备份，即只保留最近7天的�
 
 #ftp-config
 
-ftp_host="*.*.*.*"  #服务器ip
+ftp_host="111.231.142.160"
 
-ftp_user="hrhg_test"       #ftp账号
+ftp_user="hrhg"
 
-ftp_pass="*******"      #ftp密码
+ftp_pass="*******"
 
   
 cd $OUT_DIR                #进入备份存放目录 
