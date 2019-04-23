@@ -63,10 +63,10 @@ cd ../nginx-vhosts
 cat << EOF >nginx.conf
 server {
     listen       80 default;
-    server_name  ${server_name};
+    server_name  {{$server_name}};
     charset      utf-8;
  	index 		 index.html index.htm index.php;
-	root         ${rootPath};
+	root         {{$rootPath}};
 
 	location / {
         index index.html index.htm index.php;        
@@ -107,8 +107,8 @@ server {
 	{
 		expires 1h;
 	}
-    access_log  ${access_log};
-    error_log   ${error_log};
+    access_log  {{$access_log}};
+    error_log   {{$error_log}};
 	
 }
 EOF
