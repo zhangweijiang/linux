@@ -16,17 +16,17 @@ cat << EOF >git.sh
 # author-Jang
 # 20190423
 
-gitStatus="$1"
-path="$2"
-address="$3"
+gitStatus='\${1}'
+path='\$2'
+address='\$3'
 rootPath=/alidata/www
-if [ ! -d "$rootPath"/"$path" ];then
-   	mkdir -p "$rootPath"/"$path";
+if [ ! -d "\$rootPath"/"\$path" ];then
+   	mkdir -p "\$rootPath"/"\$path";
 fi;
-if [ $gitStatus == 1 ];then
-   cd "$rootPath"/website && git clone "$address" ./;
-elif [ "$gitStatus" == 2 ];then
-   cd "$rootPath"/"$path"/website && git pull "$address";
+if [ "\$gitStatus" == 1 ];then
+   cd "\$rootPath"/website && git clone "\$address" ./;
+elif [ "\$gitStatus" == 2 ];then
+   cd "\$rootPath"/"\$path"/website && git pull "\$address";
 else
    echo 'error';
 fi;
@@ -41,17 +41,17 @@ cat << EOF >svn.sh
 # author-Jang
 # 20190423
 
-gitStatus="$1"
-path="$2"
-address="$3"
+gitStatus="\$1"
+path="\$2"
+address="\$3"
 rootPath=/alidata/www
-if [ ! -d "$rootPath"/"$path" ];then
-   	mkdir -p "$rootPath"/"$path";
+if [ ! -d "\$rootPath"/"\$path" ];then
+   	mkdir -p "\$rootPath"/"\$path";
 fi;
-if [ "$gitStatus" == 1 ];then
-   cd "$rootPath"/"$path"/website && svn checkout "$address" ./;
-elif [ "$gitStatus" == 2 ];then
-   cd "$rootPath"/"$path"/website && svn update;
+if [ "\$gitStatus" == 1 ];then
+   cd "\$rootPath"/"\$path"/website && svn checkout "\$address" ./;
+elif [ "\$gitStatus" == 2 ];then
+   cd "\$rootPath"/"\$path"/website && svn update;
 else
    echo 'error';
 fi;
@@ -60,13 +60,13 @@ chmod a+x svn.sh;
 
 # 生成nginx配置文件
 cd ../nginx_vhosts
-cat << EOF >nginx.conf
+cat << EOF >nginx.conf.default
 server {
     listen       80 default;
-    server_name  {{$server_name}};
+    server_name  {{server_name}};
     charset      utf-8;
  	index 		 index.html index.htm index.php;
-	root         {{$rootPath}};
+	root         {{root_path}};
 
 	location / {
         index index.html index.htm index.php;        
@@ -107,8 +107,8 @@ server {
 	{
 		expires 1h;
 	}
-    access_log  {{$access_log}};
-    error_log   {{$error_log}};
+    access_log  {{access_log}};
+    error_log   {{error_log}};
 	
 }
 EOF
