@@ -11,7 +11,7 @@ if [ ! -d $rootPath/$path ];then
    	mkdir -p $rootPath/$path;
 fi;
 if [ $gitStatus == 1 ];then
-   cd $rootPath/$path/website && git clone $address;
+   cd $rootPath/$path/website && git clone $address ./;
 elif [ $gitStatus == 2 ];then
    cd $rootPath/$path/website && git pull $address;
 else
