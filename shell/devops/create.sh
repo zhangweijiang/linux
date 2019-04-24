@@ -16,9 +16,9 @@ cat << EOF >git.sh
 # author-Jang
 # 20190423
 
-gitStatus='\$1'
-path='\$2'
-address='\$3'
+gitStatus=\$1
+path=\$2
+address=\$3
 rootPath=/alidata/www
 if [ ! -d "\$rootPath"/"\$path" ];then
    	mkdir -p "\$rootPath"/"\$path";
@@ -41,9 +41,9 @@ cat << EOF >svn.sh
 # author-Jang
 # 20190423
 
-gitStatus="\$1"
-path="\$2"
-address="\$3"
+gitStatus=\$1
+path=\$2
+address=\$3
 rootPath=/alidata/www
 if [ ! -d "\$rootPath"/"\$path" ];then
    	mkdir -p "\$rootPath"/"\$path";
