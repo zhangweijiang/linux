@@ -7,7 +7,7 @@ yum -y install wget vim pcre pcre-devel openssl openssl-devel libicu-devel gcc g
 rm -rf php-7.2.2
 cp -frp /usr/lib64/libldap* /usr/lib/
 if [ ! -f php-7.2.2.tar.gz ];then
-  wget http://cn2.php.net/distributions/php-7.2.2.tar.gz
+  wget https://cn2.php.net/distributions/php-7.2.2.tar.gz
 fi
 tar zxvf php-7.2.2.tar.gz
 cd php-7.2.2
