@@ -1,9 +1,28 @@
 #!/bin/bash
 # lnmp之nginx1.12.2的安装
 # author ctocode-zwj <982215226@qq.com>
+
+# 判断用户或用户组是否存在，不存在则创建
+user=www
+group=www
+#create group if not exists
+egrep "^$group" /etc/group >& /dev/null
+if [ $? -ne 0 ]
+then
+    groupadd $group
+fi
+
+#create user if not exists
+egrep "^$user" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+    useradd -g $group -s /sbin/nolgin $user
+fi
+
 rm -rf nginx-1.12.2
 if [ ! -f nginx-1.12.2.tar.gz ];then
-  wget http://nginx.org/download/nginx-1.12.2.tar.gz
+  #wget http://nginx.org/download/nginx-1.12.2.tar.gz
+  wget https://f.9635.com.cn/linux/nginx-1.12.2.tar.gz
 fi
 tar zxvf nginx-1.12.2.tar.gz
 cd nginx-1.12.2
