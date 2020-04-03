@@ -12,9 +12,9 @@ rm -rf redis-4.0.0.tgz
 # 进入安装目录
 cd redis-4.0.0
 # 用phpize生成configure配置文件
-/alidata/server/php-7.2.2/bin/phpize
+/alidata/server/php/bin/phpize
 # 配置
-./configure --with-php-config=/alidata/server/php-7.2.2/bin/php-config
+./configure --with-php-config=/alidata/server/php/bin/php-config
 # 编译安装
 make && make install
 rm -rf /root/redis-4.0.0
