@@ -85,6 +85,8 @@ fi
 make install
 cd ..
 cp ./php-7.2.2/php.ini-development /alidata/server/php/etc/php.ini
+cp ./php-7.2.2/php-fpm-72 /etc/init.d/php-fpm-72
+chmod a+x /etc/init.d/php-fpm-72
 sed -i '$d'  /alidata/server/php/etc/php.ini
 cp /alidata/server/php/etc/php-fpm.conf.default /alidata/server/php/etc/php-fpm.conf
 cp /alidata/server/php/etc/php-fpm.d/www.conf.default /alidata/server/php/etc/php-fpm.d/www.conf
