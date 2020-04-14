@@ -11,3 +11,6 @@ cd mongo-1.5.1
 /alidata/server/php/bin/phpize
 ./configure --with-php-config=/alidata/server/php/bin/php-config
 make && make install
+
+# 以上安装如果失败用以下pecl安装
+# /alidata/server/php/bin/pecl install mongodb
