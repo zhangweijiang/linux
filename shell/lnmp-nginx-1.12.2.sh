@@ -60,4 +60,22 @@ chmod 755 /alidata/server/nginx/sbin/nginx
 #/alidata/server/nginx/sbin/nginx
 mv /alidata/server/nginx/conf/nginx /etc/init.d/
 chmod +x /etc/init.d/nginx
-/etc/init.d/nginx start
+
+cat > /usr/lib/systemd/system/nginx.service<<"EOF"
+[Unit]
+Description=nginx service
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.d/init.d/nginx start
+ExecReload=/etc/rc.d/init.d/nginx reload
+ExecStop=/etc/rc.d/init.d/nginx stop
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl enable nginx.service
+systemctl start nginx.service
+

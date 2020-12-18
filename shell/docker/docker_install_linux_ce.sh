@@ -53,6 +53,7 @@ echo '---------- ---------- ----------';
 yum install -y yum-utils device-mapper-persistent-data lvm2;
 
 ## 安装最新版 containerd.io
+yum clean packages
 yum install -y https://mirrors.aliyun.com/docker-ce/linux/centos/8/x86_64/stable/Packages/containerd.io-1.3.7-3.1.el8.x86_64.rpm
 
 echo
@@ -72,7 +73,7 @@ echo '---------- ---------- ----------';
 echo ' 4、install docker-ce '; 
 echo '---------- ---------- ----------';
 
-sudo dnf -y install docker-ce
+sudo dnf -y install docker-ce-19.03.13
 
 # sudo dnf -y install docker-ce --nobest
 # sudo dnf -y install docker-ce docker-ce-cli containerd.io

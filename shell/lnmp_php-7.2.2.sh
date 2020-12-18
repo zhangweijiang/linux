@@ -28,7 +28,7 @@ if [ ! -f php-7.2.2.tar.gz ];then
   wget https://f.9635.com.cn/linux/php-7.2.2.tar.gz
 fi
 tar zxvf php-7.2.2.tar.gz
-chmo -R 777 php-7.2.2
+chmod -R 777 php-7.2.2
 cd php-7.2.2
 ./configure --prefix=/alidata/server/php \
 --with-config-file-path=/alidata/server/php/etc \
