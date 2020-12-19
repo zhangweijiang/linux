@@ -61,6 +61,7 @@ chmod 755 /alidata/server/nginx/sbin/nginx
 mv /alidata/server/nginx/conf/nginx /etc/init.d/
 chmod +x /etc/init.d/nginx
 
+# 设置开机启动
 cat > /usr/lib/systemd/system/nginx.service<<"EOF"
 [Unit]
 Description=nginx service
