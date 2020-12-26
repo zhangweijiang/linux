@@ -35,7 +35,8 @@ chmod a+x configure
 --with-http_stub_status_module \
 --without-http-cache \
 --with-http_ssl_module \
---with-http_gzip_static_module
+--with-http_gzip_static_module \
+--with-http_realip_module
 CPU_NUM=$(cat /proc/cpuinfo | grep processor | wc -l)
 if [ $CPU_NUM -gt 1 ];then
     make -j$CPU_NUM

@@ -1,4 +1,6 @@
 #!/bin/bash
+# linux下安装docker及相关组件
+# author ctocode-zwj <982215226@qq.com>
  
 
 
